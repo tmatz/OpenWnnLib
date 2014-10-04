@@ -24,7 +24,6 @@ import java.util.Arrays;
 
 import jp.co.omronsoft.openwnn.CandidateFilter;
 import jp.co.omronsoft.openwnn.ComposingText;
-import jp.co.omronsoft.openwnn.OpenWnn;
 import jp.co.omronsoft.openwnn.OpenWnnDictionaryImpl;
 import jp.co.omronsoft.openwnn.StrSegmentClause;
 import jp.co.omronsoft.openwnn.WnnClause;
@@ -34,6 +33,7 @@ import jp.co.omronsoft.openwnn.WnnSentence;
 import jp.co.omronsoft.openwnn.WnnWord;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.content.Context;
 
 /**
  * The OpenWnn engine class for Japanese IME.
@@ -132,13 +132,15 @@ public class OpenWnnEngineJAJP implements WnnEngine {
      * 
      * @param writableDictionaryName    Writable dictionary file name(null if not use)
      */
-    public OpenWnnEngineJAJP(String writableDictionaryName) {
+    public OpenWnnEngineJAJP(Context context, String writableDictionaryName) {
         /* load Japanese dictionary library */
         mDictionaryJP = new OpenWnnDictionaryImpl(
+				context,
                 "/data/data/jp.co.omronsoft.openwnn/lib/libWnnJpnDic.so",
                 writableDictionaryName );
         if (!mDictionaryJP.isActive()) {
             mDictionaryJP = new OpenWnnDictionaryImpl(
+					context,
                     "/system/lib/libWnnJpnDic.so",
                     writableDictionaryName );
         }

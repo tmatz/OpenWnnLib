@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.util.Log;
+import android.content.Context;
 
 /**
  * The implementation class of WnnDictionary interface (JNI wrapper class).
@@ -178,6 +179,8 @@ public class OpenWnnDictionaryImpl implements WnnDictionary {
     protected int mFrequencyOffsetOfUserDictionary = -1;
     /** The Frequency offset of learn dictionary */
     protected int mFrequencyOffsetOfLearnDictionary = -1;
+	
+	protected Context mContext;
 
     /*
      * DEFINITION OF METHODS
@@ -189,8 +192,8 @@ public class OpenWnnDictionaryImpl implements WnnDictionary {
      *
      * @param dicLibPath    The dictionary library file path
      */
-    public OpenWnnDictionaryImpl( String dicLibPath ) {
-        this( dicLibPath, null );
+    public OpenWnnDictionaryImpl( Context context, String dicLibPath ) {
+        this( context, dicLibPath, null );
     }
 
     /**
@@ -201,8 +204,9 @@ public class OpenWnnDictionaryImpl implements WnnDictionary {
      * @param dicLibPath    The dictionary library file path
      * @param dicFilePath   The path name of writable dictionary
      */
-    public OpenWnnDictionaryImpl( String dicLibPath, String dicFilePath ) {
+    public OpenWnnDictionaryImpl( Context context, String dicLibPath, String dicFilePath ) {
         /* Create the internal work area */
+		this.mContext = context;
         this.mWnnWork = OpenWnnDictionaryImplJni.createWnnWork( dicLibPath );
 
         if( this.mWnnWork != 0 && dicFilePath != null ) {
@@ -354,7 +358,7 @@ public class OpenWnnDictionaryImpl implements WnnDictionary {
     public void setInUseState( boolean flag ) {
         if( flag ) {
             if( mDbDic == null ) {
-                mDbOpenHelper = new OpenWnnSQLiteOpenHelper(OpenWnn.getCurrentIme(), mDicFilePath);
+                mDbOpenHelper = new OpenWnnSQLiteOpenHelper(mContext, mDicFilePath);
                 mDbDic = mDbOpenHelper.getWritableDatabase();
             }
         } else {

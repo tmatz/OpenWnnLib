@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import jp.co.omronsoft.openwnn.*;
 import android.content.SharedPreferences;
+import android.content.Context;
 
 /**
  * The OpenWnn engine class for English IME.
@@ -71,17 +72,19 @@ public class OpenWnnEngineEN implements WnnEngine {
      * 
      * @param writableDictionaryName		Writable dictionary file name(null if not use)
      */
-    public OpenWnnEngineEN(String writableDictionaryName) {
+    public OpenWnnEngineEN(Context context, String writableDictionaryName) {
         mConvResult = new ArrayList<WnnWord>();
         mCandTable = new HashMap<String, WnnWord>();
         mSearchKey = null;
         mOutputNum = 0;
 
-        mDictionary = new OpenWnnDictionaryImpl( 
+        mDictionary = new OpenWnnDictionaryImpl(
+				context,
         		"/data/data/jp.co.omronsoft.openwnn/lib/libWnnEngDic.so",
         		writableDictionaryName);
         if (!mDictionary.isActive()) {
         	mDictionary = new OpenWnnDictionaryImpl(
+					context,
         			"/system/lib/libWnnEngDic.so",
         			writableDictionaryName);
         }
