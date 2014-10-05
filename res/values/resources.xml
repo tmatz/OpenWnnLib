@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="Keyboard">
+		<attr name="android:keyWidth" />
+		<attr name="android:keyHeight" />
+		<attr name="android:horizontalGap" />
+		<attr name="android:verticalGap" />
+	</declare-styleable>
+
+	<declare-styleable name="KeyboardView">
+		<attr name="android:keyBackground" />
+		<attr name="android:verticalCorrection" />
+		<attr name="android:keyPreviewLayout" />
+		<attr name="android:keyPreviewOffset" />
+		<attr name="android:keyPreviewHeight" />
+		<attr name="android:keyTextSize" />
+		<attr name="android:keyTextColor" />
+		<attr name="android:labelTextSize" />
+		<attr name="android:popupLayout" />
+		<attr name="android:shadowColor" />
+		<attr name="android:shadowRadius" />
+	</declare-styleable>
+
+	<declare-styleable name="Keyboard_Row">
+		<attr name="android:rowEdgeFlags" />
+		<attr name="android:keyboardMode" />
+	</declare-styleable>
+
+	<declare-styleable name="Keyboard_Key">
+		<attr name="android:codes" />
+		<attr name="android:iconPreview" />
+		<attr name="android:popupCharacters" />
+		<attr name="android:popupKeyboard" />
+		<attr name="android:isRepeatable" />
+		<attr name="android:isModifier" />
+		<attr name="android:isSticky" />
+		<attr name="android:keyEdgeFlags" />
+		<attr name="android:keyIcon" />
+		<attr name="android:keyLabel" />
+		<attr name="android:keyOutputText" />
+	</declare-styleable>
+
+	<declare-styleable name="Theme">
+		<attr name="android:backgroundDimAmount" />
+	</declare-styleable>
+</resources>
