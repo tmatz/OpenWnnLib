@@ -2,3 +2,5 @@ gen
 bin
 obj
 libs
+.classpath
+.settings
