@@ -471,9 +471,11 @@ public class OpenWnnJAJP extends OpenWnn {
         if (OpenWnn.getCurrentIme() != null) {
             if (mConverter == null || mConverterJAJP == null) {
                 mConverter = mConverterJAJP = new OpenWnnEngineJAJP("/data/data/jp.co.omronsoft.openwnn/writableJAJP.dic");
+				mConverter.init();
             }
             if (mConverterEN == null) {
                 mConverterEN = new OpenWnnEngineEN("/data/data/jp.co.omronsoft.openwnn/writableEN.dic");
+				mConverterEN.init();
             }
         }
 
